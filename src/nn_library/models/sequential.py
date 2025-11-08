@@ -1,4 +1,4 @@
-from model_interface import Model
+from .model_interface import Model
 
 class Sequential(Model):
   def __init__(self, layers):

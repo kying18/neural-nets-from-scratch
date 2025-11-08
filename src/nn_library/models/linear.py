@@ -1,6 +1,6 @@
 import numpy as np
 
-from model_interface import Model
+from .model_interface import Model
 
 class Linear(Model):
   def __init__(self, in_dim, out_dim):

@@ -1,16 +1,17 @@
 import numpy as np
 
-from loss_interface import Loss
+from .loss_interface import Loss
 
 _EPS = 1e-12
 
 class BinaryCrossEntropyLoss(Loss):
-  def __init__(self, y_real):
+  def __init__(self):
+    super().__init__()
+
+  def calculate(self, y_pred, y_real):
+    self.y_pred = y_pred
     self.y_real = y_real
     self.batch_size = y_real.shape[0]
-
-  def calculate(self, y_pred):
-    self.y_pred = y_pred
     # y_pred are probabilistic outputs of length N
     # -(y*log(p) + (1-y)*log(1-p))
     clipped = np.clip(y_pred, _EPS, 1-_EPS)
@@ -23,11 +24,13 @@ class BinaryCrossEntropyLoss(Loss):
 
 
 class CategoricalCrossEntropyLoss(Loss):
-  def __init__(self, y_real):
-    self.y_real = y_real
+  def __init__(self):
+    super().__init__()
 
-  def calculate(self, y_pred):
+  def calculate(self, y_pred, y_real):
     self.y_pred = y_pred
+    self.y_real = y_real
+    self.batch_size = y_real.shape[0]
     # sum of y_i * log(p_i)
     # y_pred is (N, # of classes), where prob of each class is the output
     clipped = np.clip(y_pred, _EPS, 1 - _EPS)

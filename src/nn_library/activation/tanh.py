@@ -14,7 +14,9 @@ class Tanh(Model):
     return self.fwd
 
   def backward(self, dL_dout):
-    return 1 - self.fwd ** 2
+    # Derivative of tanh is 1 - tanh(x)^2
+    # Must multiply by incoming gradient for chain rule
+    return dL_dout * (1 - self.fwd ** 2)
 
   def step(self, lr):
     pass
