@@ -50,19 +50,26 @@ pip install -r requirements.txt
 
 ### Training a Model
 
-```bash
-python scripts/train.py
-```
-
-### Running Visualizations
+Train a neural network on generated datasets (circles or moons):
 
 ```bash
-# Static visualizations
-python scripts/visualize.py
+# Basic training
+python scripts/train_generated_datasets.py
 
-# Training with video generation (creates MP4/GIF videos)
-python scripts/train_with_recording.py
+# Train with video generation (creates MP4/GIF videos)
+python scripts/train_generated_datasets.py --record
+
+# Train on circles dataset with video generation
+python scripts/train_generated_datasets.py --record --dataset-type circles
+
+# Train on moons dataset with video generation
+python scripts/train_generated_datasets.py --record --dataset-type moons
 ```
+
+**Command-line Options:**
+
+- `--record` or `--use-recording`: Enable recording for video generation
+- `--dataset-type`: Choose dataset type (`circles` or `moons`, default: `moons`)
 
 **Note:** For MP4 video generation, install FFmpeg:
 
@@ -93,18 +100,21 @@ src/nn_library/
 
 ## Visualization Tools
 
-The library includes comprehensive visualization tools styled like [playground.tensorflow.org](https://playground.tensorflow.org):
+The library includes visualization tools styled like [playground.tensorflow.org](https://playground.tensorflow.org):
 
-- **Gradient flow analysis** - Track gradients through the network
-- **Activation saturation monitoring** - Detect dead neurons and saturation
-- **Decision boundary visualization** - Beautiful 2D/3D decision boundaries with playground styling
-- **Training videos** - Animated videos of decision boundary and loss landscape evolution
-- **3D loss surface animations** - Visualize the loss landscape
-- **Color-coded neuron activation heatmaps** - See how neurons fire
+- **Decision boundary visualization** - Beautiful 2D decision boundaries with playground styling
+- **Training videos** - Animated videos of decision boundary evolution during training
 
 ### Video Generation
 
-Create stunning training videos showing how the model learns:
+Training videos are automatically generated when using the `--record` flag. The videos show how the decision boundary evolves as the model learns, with each frame representing a training epoch.
+
+Videos are saved to the `visualizations/` directory with names like:
+
+- `decision_boundary_training_circles.mp4`
+- `decision_boundary_training_moons.mp4`
+
+You can also use the visualization API directly:
 
 ```python
 from visualization import TrainingRecorder, animate_decision_boundary_training

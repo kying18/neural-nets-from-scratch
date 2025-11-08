@@ -93,3 +93,5 @@ logs/
 .DS_Store
 Thumbs.db
 
+# Visualizations due to large size
+visualizations/
