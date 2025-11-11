@@ -46,6 +46,8 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+> **Visualization dependencies:** all animations rely on `matplotlib` and `pillow`. The loss landscape animation additionally requires `scipy>=1.13` (already included in `requirements.txt`). If SciPy is missing, only the loss landscape helper is unavailable.
+
 ## Usage
 
 ### Training a Model
@@ -104,6 +106,21 @@ The library includes visualization tools styled like [playground.tensorflow.org]
 
 - **Decision boundary visualization** - Beautiful 2D decision boundaries with playground styling
 - **Training videos** - Animated videos of decision boundary evolution during training
+- **Neuron activation heatmaps** - Understand what each neuron responds to
+- **Loss landscape exploration** - Project optimization progress into a 2D slice of parameter space
+
+### Available animations
+
+| Function                             | What it shows                                         | Notes                                               |
+| ------------------------------------ | ----------------------------------------------------- | --------------------------------------------------- |
+| `animate_decision_boundary_training` | Evolution of the 2D decision boundary during training | Uses training history from `TrainingRecorder`       |
+| `animate_dataset_scatter_plot`       | Progressive reveal of the input dataset               | Helpful intro clip before training                  |
+| `animate_probability_distribution`   | Model confidence for each training sample over time   | Shows convergence on a 0–1 axis                     |
+| `animate_training_loss`              | Train vs. test loss curves                            | Requires loss values recorded in `TrainingRecorder` |
+| `animate_training_accuracy`          | Train vs. test accuracy curves                        | Requires accuracy metrics in `TrainingRecorder`     |
+| `animate_network_architecture`       | Network graph with live activations                   | Restores model weights per epoch                    |
+| `animate_neuron_activations`         | Spatial activation patterns per neuron                | Works best for 2D datasets                          |
+| `animate_loss_landscape_2d`          | 2D slice of the loss surface with trajectory          | Requires `scipy>=1.13` for interpolation            |
 
 ### Video Generation
 
