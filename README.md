@@ -102,25 +102,23 @@ src/nn_library/
 
 ## Visualization Tools
 
-The library includes visualization tools styled like [playground.tensorflow.org](https://playground.tensorflow.org):
+The library includes visualization tools:
 
-- **Decision boundary visualization** - Beautiful 2D decision boundaries with playground styling
-- **Training videos** - Animated videos of decision boundary evolution during training
-- **Neuron activation heatmaps** - Understand what each neuron responds to
+- **Decision boundaires** - Animated videos of decision boundary evolution during training
+- **Neuron activations** - Understand what each neuron represents
 - **Loss landscape exploration** - Project optimization progress into a 2D slice of parameter space
 
 ### Available animations
 
-| Function                             | What it shows                                         | Notes                                               |
-| ------------------------------------ | ----------------------------------------------------- | --------------------------------------------------- |
-| `animate_decision_boundary_training` | Evolution of the 2D decision boundary during training | Uses training history from `TrainingRecorder`       |
-| `animate_dataset_scatter_plot`       | Progressive reveal of the input dataset               | Helpful intro clip before training                  |
-| `animate_probability_distribution`   | Model confidence for each training sample over time   | Shows convergence on a 0–1 axis                     |
-| `animate_training_loss`              | Train vs. test loss curves                            | Requires loss values recorded in `TrainingRecorder` |
-| `animate_training_accuracy`          | Train vs. test accuracy curves                        | Requires accuracy metrics in `TrainingRecorder`     |
-| `animate_network_architecture`       | Network graph with live activations                   | Restores model weights per epoch                    |
-| `animate_neuron_activations`         | Spatial activation patterns per neuron                | Works best for 2D datasets                          |
-| `animate_loss_landscape_2d`          | 2D slice of the loss surface with trajectory          | Requires `scipy>=1.13` for interpolation            |
+| Function                             | What it shows                                         | Inputs you need                                     | Extra requirements       |
+| ------------------------------------ | ----------------------------------------------------- | --------------------------------------------------- | ------------------------ |
+| `animate_decision_boundary_training` | Evolution of the 2D decision boundary during training | Trained model, 2D data, `TrainingRecorder` history  | —                        |
+| `animate_dataset_scatter_plot`       | Progressive reveal of the input dataset               | 2D dataset                                          | —                        |
+| `animate_probability_distribution`   | Model confidence for each training sample over time   | Trained model, dataset, `TrainingRecorder` history  | —                        |
+| `animate_training_loss`              | Train vs. test loss curves                            | `TrainingRecorder` with `loss` and `test_loss`      | —                        |
+| `animate_training_accuracy`          | Train vs. test accuracy curves                        | `TrainingRecorder` with `accuracy` metrics          | —                        |
+| `animate_network_architecture`       | Network graph with live activations                   | Trained model, sample batch, `TrainingRecorder`     | —                        |
+| `animate_loss_landscape_2d`          | 2D slice of the loss surface with trajectory          | Trained model, dataset, loss fn, `TrainingRecorder` | Requires `scipy >= 1.13` |
 
 ### Video Generation
 

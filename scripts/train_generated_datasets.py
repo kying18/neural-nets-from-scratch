@@ -122,7 +122,7 @@ def main():
     # Training configuration
     use_recording = args.record
     lr = 0.05
-    epochs = 250
+    epochs = 200
     batch_size = 32
     
     # Model architecture

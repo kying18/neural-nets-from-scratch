@@ -8,7 +8,6 @@ from .video_generator import (
     animate_training_loss,
     animate_training_accuracy,
     animate_network_architecture,
-    animate_neuron_activations,
     animate_loss_landscape_2d,
 )
 
@@ -20,6 +19,5 @@ __all__ = [
     "animate_training_loss",
     "animate_training_accuracy",
     "animate_network_architecture",
-    "animate_neuron_activations",
     "animate_loss_landscape_2d",
 ]
